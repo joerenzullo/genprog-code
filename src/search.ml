@@ -1255,7 +1255,7 @@ let ww_adaptive_1 (original : ('a,'b) Rep.representation) incoming_pop =
 
 
   let variants_explored_sofar = ref 0 in 
-
+      let fout = open_out "mutations.txt" in
   let rec search_edits remaining = 
     if remaining = [] then begin 
       debug "search: ww_adaptive: ends (no repair)\n" ;
@@ -1279,9 +1279,8 @@ let ww_adaptive_1 (original : ('a,'b) Rep.representation) incoming_pop =
         (TestSet.cardinal test_set) ;
       assert(not (TestSet.is_empty test_set)); 
       let cf_before = !compile_failures in 
-      let success =
-        test_to_first_failure ~allowed:(fun t -> TestSet.mem t test_set) variant
-      in
+      let success = false in
+        Printf.fprintf fout "%s\n" (variant#name  ());
       if success then
         begin
           debug "search: ww_adaptive: ends (yes repair)\n" ; 
