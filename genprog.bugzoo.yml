@@ -2,10 +2,10 @@ version: '1.0'
 
 blueprints:
   - type: docker
-    tag: squareslab/genprog
+    tag: joerenzullo/ae
 
 tools:
-  - name: genprog
-    image: squareslab/genprog
+  - name: ae
+    image: joerenzullo/ae
     environment:
       PATH: "/opt/genprog/bin:${PATH}"
